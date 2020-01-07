@@ -33,8 +33,7 @@ class DoublyLinkedList {
   unshift(data) {
     let newNode = new Node(data);
     if(this.head){
-      this.
-      head.prev = newNode;
+      this.head.prev = newNode;
       newNode.next = this.head;
       this.length++;
       this.head = newNode;
@@ -51,7 +50,23 @@ class DoublyLinkedList {
 
 // add to tail
   push(data) {
-    let newNode = new Ndoe(data)
+    let newNode = new Node(data);
+
+    if(this.tail){
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.length++;
+      this.tail = newNode;
+      if(!this.head){
+        this.head = newNode
+      }
+    } else {
+      this.tail = newNode;
+      this.head = newNode;
+      this.length++;
+    }
+    // could return length instead
+    return this.tail;
   }
 // remove head
   shift() {
@@ -104,8 +119,13 @@ console.log(
   list.size(),
   list.peekHead(), list.peekTail()
 );
-// test unShif
+// test unshift
 console.log(
   list.unshift(2), list.unshift(3), list.unshift(4)
+);
+console.log(list);
+// test push
+console.log(
+  list.push(20), list.push(30), list.push(40)
 );
 console.log(list);
