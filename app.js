@@ -70,7 +70,16 @@ class DoublyLinkedList {
   }
 // remove head
   shift() {
+    if(!this.head) return;
+    let shifted = this.head;
+    this.head = shifted.next;
+    if(this.head){
+      this.head.prev = null;
+    }
+    this.length--;
 
+    shifted.next = null;
+    return shifted;
   }
 // remove tail
   pop() {
@@ -128,4 +137,11 @@ console.log(list);
 console.log(
   list.push(20), list.push(30), list.push(40)
 );
+console.log(list);
+// test shift
+console.log(
+  list.shift(),
+  list.shift(),
+  list.shift(),
+)
 console.log(list);
