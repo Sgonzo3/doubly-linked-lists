@@ -85,7 +85,19 @@ class DoublyLinkedList {
   }
 // remove tail
   pop() {
+    if(!this.tail) return;
+    let popped = this.tail;
 
+    this.tail = this.tail.prev;
+    if(this.tail) {
+      this.tail.next = null;
+    } else {
+      this.head = popped.next;
+    }
+    this.length--;
+
+    popped.prev = null;
+    return popped;
   }
 
   get(index) {
@@ -145,5 +157,22 @@ console.log(
   list.shift(),
   list.shift(),
   list.shift(),
-)
+);
+console.log(list);
+console.log(
+  list.pop(),
+  list.pop(),
+  list.pop(),
+);
+console.log(list);
+// test shift to NULL
+console.log(
+  list.unshift(10),
+  list.unshift(20)
+);
+console.log(list);
+console.log(
+  list.shift(),
+  list.shift()
+);
 console.log(list);
