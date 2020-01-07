@@ -75,6 +75,8 @@ class DoublyLinkedList {
     this.head = shifted.next;
     if(this.head){
       this.head.prev = null;
+    } else {
+      this.tail = shifted.prev;
     }
     this.length--;
 
