@@ -16,27 +16,42 @@ class DoublyLinkedList {
 
 // show  length
   size() {
-
+    return this.length;
   }
 
 // show head
   peekHead() {
-
+    return this.head;
   }
 
 // show tail
   peekTail() {
-
+    return this.tail;
   }
 
 // add to head
-  unShift() {
-
+  unshift(data) {
+    let newNode = new Node(data);
+    if(this.head){
+      this.
+      head.prev = newNode;
+      newNode.next = this.head;
+      this.length++;
+      this.head = newNode;
+      if(!this.tail){
+        this.tail = newNode;
+      }
+    } else {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+    }
+    return this.head;
   }
 
 // add to tail
-  push() {
-
+  push(data) {
+    let newNode = new Ndoe(data)
   }
 // remove head
   shift() {
@@ -84,3 +99,13 @@ class DoublyLinkedList {
 
 // Tests
 const list = new DoublyLinkedList();
+// size test, peekHead, peekTail
+console.log(
+  list.size(),
+  list.peekHead(), list.peekTail()
+);
+// test unShif
+console.log(
+  list.unshift(2), list.unshift(3), list.unshift(4)
+);
+console.log(list);
