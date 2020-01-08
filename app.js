@@ -125,7 +125,11 @@ class DoublyLinkedList {
 
 // alter value of node at given index
   set(index, data) {
-    
+    let foundNode = this.get(index);
+    if(foundNode){
+      foundNode.val = data;
+      return foundNode;
+    }
   }
 
 // remove at index
@@ -216,3 +220,9 @@ console.log('3',list.get(3));
 console.log('2',list.get(2));
 console.log('4',list.get(-4));
 console.log('-3',list.get(-3));
+// tests for set
+console.log(list.set(0, 1000));
+console.log(list.set(-1, 2000));
+console.log(list.set(3, 1000));
+console.log(list.set(-4, 1000));
+console.log(list);
