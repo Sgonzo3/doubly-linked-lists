@@ -7,6 +7,7 @@ class Node {
     this.next = null;
   }
 }
+
 class DoublyLinkedList {
   constructor() {
     this.head = null;
@@ -100,12 +101,31 @@ class DoublyLinkedList {
     return popped;
   }
 
+// find node at given index
   get(index) {
-
+    if(index > this.length - 1 || index < -this.length) return 'Invalid Index';
+    if(index < 0) {
+      let current = this.tail;
+      let count = index + 1;
+      while(count) {
+        current = current.prev;
+        count++;
+      }
+      return current;
+    } else {
+      let current = this.head;
+      let count = index;
+      while(count) {
+        current = current.next;
+        count--;
+      }
+      return current;
+    }
   }
 
+// alter value of node at given index
   set(index, data) {
-
+    
   }
 
 // remove at index
@@ -113,26 +133,34 @@ class DoublyLinkedList {
 
   }
 
-// show all node values with pointer to next
+// show all node values with pointer to next and prev
   print() {
-
+    // print two seperate statements?
   }
 
+// reverse the order of nodes in the list
   reverseList() {
 
   }
 
+// determine if a cycle is present in the list
   findCycle() {
 
   }
 
+// check for and remove duplicate values in list
   removeDuplicates() {
 
   }
 
-  findFromBack() {
-    // might just set negative value on get
-  }
+// // check for matching order front to back, back to front?
+//   checkMatchingOrder() {
+//     // just handle with print()?
+//   }
+
+//   findFromBack() {
+//     // might just set negative value on get
+//   }
 }
 
 // Tests
@@ -175,4 +203,16 @@ console.log(
   list.shift(),
   list.shift()
 );
+// test for get
 console.log(list);
+console.log(
+  list.push(1),
+  list.push(2),
+  list.push(3)
+);
+console.log('0',list.get(0));
+console.log('-1',list.get(-1));
+console.log('3',list.get(3));
+console.log('2',list.get(2));
+console.log('4',list.get(-4));
+console.log('-3',list.get(-3));
