@@ -207,7 +207,14 @@ class DoublyLinkedList {
 
 // determine if a cycle is present in the list
   findCycle() {
-
+    let fast = this.head;
+    let slow = this.head;
+    while(fast.next) {
+      fast = fast.next.next;
+      slow = slow.next;
+      if(fast === slow)return true;
+    }
+    return false;
   }
 
 // check for and remove duplicate values in list
@@ -314,3 +321,8 @@ console.log(
 console.log(list.print());
 console.log(list.reverseList());
 console.log(list.print());
+// test for find findCycle
+// list.tail.next = list.head;
+// list.head.prev = list.tail;
+console.log(list);
+console.log(list.findCycle());
