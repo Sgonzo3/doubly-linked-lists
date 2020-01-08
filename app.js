@@ -103,7 +103,7 @@ class DoublyLinkedList {
 
 // find node at given index
   get(index) {
-    if(index > this.length - 1 || index < -this.length) return 'Invalid Index';
+    if(index > this.length - 1 || index < -this.length) return;
     if(index < 0) {
       let current = this.tail;
       let count = index + 1;
