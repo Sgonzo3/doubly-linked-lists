@@ -155,7 +155,27 @@ class DoublyLinkedList {
 
 // show all node values with pointer to next and prev
   print() {
-    // print two seperate statements?
+    // if(!this.head || !this.tail) return 'null';
+    // print combined or two seperate statements?
+    let statement = `null <->`;
+    let forward = `null ->`;
+    let backward = ` <- null`;
+    let current = this.head;
+    let alt = this.tail;
+    while(current){
+      statement += ` ${current.val} <->`;
+      forward += ` ${current.val} ->`;
+      current = current.next;
+    }
+    while(alt) {
+      backward = ` <- ${alt.val}` + backward;
+      alt = alt.prev;
+    }
+    return `
+      ${statement} null
+      ${forward} null
+      null${backward}
+      `;
   }
 
 // reverse the order of nodes in the list
@@ -247,5 +267,19 @@ console.log(list);
 console.log(list.removeNodeAt(2));
 console.log(list.removeNodeAt(-1));
 console.log(list.removeNodeAt(0));
-
 console.log(list);
+// tests for print
+console.log(
+  list.push(1),
+  list.push(2),
+  list.push(3)
+);
+console.log(list);
+console.log(list.print());
+console.log(
+  list.shift(),
+  list.shift(),
+  list.shift()
+);
+console.log(list);
+console.log(list.print());
