@@ -180,7 +180,29 @@ class DoublyLinkedList {
 
 // reverse the order of nodes in the list
   reverseList() {
+    if (!this.head || !this.head.next) {
+      return this.head;
+    }
+    let current = this.head;
+    let temp = null;
+    let prev = null;
+    let tailIsSet = false;
 
+    while (current) {
+      if(!tailIsSet){
+        this.tail = current;
+        tailIsSet = true;
+      }
+
+      temp = current.next;
+      current.next = prev;
+      current.prev = temp;
+
+      prev = current;
+      current = temp;
+    }
+    this.head = prev;
+    return this;
   }
 
 // determine if a cycle is present in the list
@@ -282,4 +304,13 @@ console.log(
   list.shift()
 );
 console.log(list);
+console.log(list.print());
+// tests for reverseList
+console.log(
+  list.push(1),
+  list.push(2),
+  list.push(3)
+);
+console.log(list.print());
+console.log(list.reverseList());
 console.log(list.print());
