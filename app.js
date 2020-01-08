@@ -134,7 +134,23 @@ class DoublyLinkedList {
 
 // remove at index
   removeNodeAt(index) {
+    let removedNode = this.get(index);
+    if(removedNode === this.head) {
+      return this.shift();
+    } else if(removedNode === this.tail) {
+      return this.pop();
+    } else if(removedNode){
+      if(removedNode.prev) removedNode.prev.next = removedNode.next;
+      if(removedNode.next) removedNode.next.prev = removedNode.prev;
 
+      if(removedNode.next) removedNode.next.prev = removedNode.prev;
+
+
+      removedNode.prev = null;
+      removedNode.next = null;
+      this.length--;
+      return removedNode;
+    }
   }
 
 // show all node values with pointer to next and prev
@@ -225,4 +241,11 @@ console.log(list.set(0, 1000));
 console.log(list.set(-1, 2000));
 console.log(list.set(3, 1000));
 console.log(list.set(-4, 1000));
+console.log(list.set(2, 3000));
+console.log(list);
+// test for removeNodeAt
+console.log(list.removeNodeAt(2));
+console.log(list.removeNodeAt(-1));
+console.log(list.removeNodeAt(0));
+
 console.log(list);
