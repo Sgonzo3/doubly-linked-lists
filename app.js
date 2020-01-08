@@ -155,8 +155,8 @@ class DoublyLinkedList {
 
 // show all node values with pointer to next and prev
   print() {
-    // if(!this.head || !this.tail) return 'null';
     // print combined or two seperate statements?
+    // if(!this.head || !this.tail) return 'null';
     let statement = `null <->`;
     let forward = `null ->`;
     let backward = ` <- null`;
