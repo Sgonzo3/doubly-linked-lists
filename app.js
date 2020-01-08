@@ -219,17 +219,47 @@ class DoublyLinkedList {
 
 // check for and remove duplicate values in list
   removeDuplicates() {
+    let set = new Set();
+    let current = this.head;
+    while(current){
+      if(!set.has(current.val)){
+        set.add(current.val);
+        current = current.next;
+      } else {
+        if(current === this.tail) return this.pop();
+        let temp = current;
+        current = current.next;
 
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+
+        temp.next = null;
+        temp.prev = null;
+        this.length--;
+      }
+    }
+    return this;
   }
 
 // // check for matching order front to back, back to front?
-//   checkMatchingOrder() {
-//     // just handle with print()?
-//   }
-
-//   findFromBack() {
-//     // might just set negative value on get
-//   }
+  checkMatchingOrder() {
+    // just handle with print()?
+    if(!this.head || !this.tail) return null;
+    let forward = ``;
+    let backward = ``;
+    let front = this.head;
+    let back = this.tail;
+    while(front) {
+      forward += front.val;
+      front = front.next;
+    };
+    while(back){
+      backward = back.val + backward;
+      back = back.prev;
+    };
+    console.log(forward, backward)
+    return forward === backward ? true : false;
+  }
 }
 
 // Tests
@@ -326,3 +356,16 @@ console.log(list.print());
 // list.head.prev = list.tail;
 console.log(list);
 console.log(list.findCycle());
+// tests for removeDuplicates
+console.log(list);
+console.log(
+  list.push(7),
+  list.push(7),
+  list.push(7),
+  list.push(4)
+);
+console.log(list.print());
+console.log(list.removeDuplicates());
+console.log(list.print());
+// tests for checkMatchingOrder
+console.log(list.checkMatchingOrder());
