@@ -1,5 +1,7 @@
 // Doubly Linked Lists
 
+//
+
 class Node {
   constructor(data){
     this.val = data;
@@ -131,7 +133,6 @@ class DoublyLinkedList {
       return foundNode;
     }
   }
-
 // remove at index
   removeNodeAt(index) {
     let removedNode = this.get(index);
@@ -260,6 +261,26 @@ class DoublyLinkedList {
     console.log(forward, backward)
     return forward === backward ? true : false;
   }
+
+  // add node at index
+    addNodeAt(index, data){
+      let newNode = new Node(data);
+      let position = this.get(index);
+      if(!position){
+        return;
+      } else if(position === this.tail) {
+        return this.push(data);
+      } else if(position === this.head) {
+        return this.unshift(data);
+      } else {
+        position.prev.next = newNode;
+        newNode.prev = position.prev;
+        newNode.next = position;
+        position.prev = newNode;
+        this.length++;
+      }
+      return this.length;
+    }
 }
 
 // Tests
@@ -369,3 +390,15 @@ console.log(list.removeDuplicates());
 console.log(list.print());
 // tests for checkMatchingOrder
 console.log(list.checkMatchingOrder());
+// test for addNodeAt
+console.log(list.print());
+console.log(list.get(0));
+console.log(list.addNodeAt(0, 5555));
+console.log(list.get(0));
+console.log(list.get(-1));
+console.log(list.addNodeAt(-1, 5555));
+console.log(list.get(5));
+console.log(list.get(8));
+console.log(list.addNodeAt(8, 5555));
+console.log(list.get(8));
+console.log(list.print());
