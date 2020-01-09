@@ -281,6 +281,15 @@ class DoublyLinkedList {
       }
       return this.length;
     }
+
+    search(value){
+      let current = this.head;
+      while(current){
+        if(current.val === value) return current;
+        current = current.next;
+      }
+      return false;
+    }
 }
 
 // Tests
@@ -402,3 +411,6 @@ console.log(list.get(8));
 console.log(list.addNodeAt(8, 5555));
 console.log(list.get(8));
 console.log(list.print());
+// tests for search
+console.log(list.search(300000003));
+console.log(list.search(5555));
